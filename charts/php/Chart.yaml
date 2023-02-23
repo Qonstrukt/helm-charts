@@ -2,7 +2,7 @@ apiVersion: v2
 name: php
 description: A Helm Chart for a generic PHP application
 type: application
-version: 0.1.1
+version: 0.1.2
 keywords:
   - php
   - apache 
@@ -19,7 +19,7 @@ maintainers:
     url: https://qonstrukt.nl
 annotations:
   artifacthub.io/changes: |
-    - Fix passing ENV variables
+    - Configure working container configuration
   artifacthub.io/images: |
     - name: PHP 8.0
       image: qonstrukt/php:8.0-v6-apache

@@ -35,17 +35,11 @@ nodeSelector: {}
 ## Additional pod annotations
 podAnnotations: {}
 
-## Pod security options (default: www-data as fsGroup and user running as non-root)
-podSecurityContext:
-  fsGroup: 33
-  runAsUser: 33
-  runAsNonRoot: true
+## Pod security options
+podSecurityContext: {}
 
 ## Default security options to run as read only container without privilege escalation
-securityContext:
-  readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false
-  privileged: false
+securityContext: {}
 
 service:
   type: ClusterIP
@@ -156,6 +150,8 @@ env:
     value: www-data
   - name: APACHE_RUN_GROUP
     value: www-data
+  - name: TZ
+    value: Europe/Amsterdam
   ## Set the document root
   # - name: APACHE_DOCUMENT_ROOT
   #   value: public/
@@ -164,10 +160,10 @@ env:
   #   value: prod
   ## Enable the PostgreSQL extension
   # - name: PHP_EXTENSION_PGSQL
-  #   value: 1
+  #   value: "1"
   ## Disable the Mysqli extension (otherwise it is enabled by default)
   # - name: PHP_EXTENSION_MYSQLI
-  #   value: 0
+  #   value: "0"
   ## set the parameter memory_limit=1g
   # - name: PHP_INI_MEMORY_LIMIT
   #   value: 1g
