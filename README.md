@@ -5,3 +5,10 @@
 Helm Charts for several Docker images:
 - [UniFi Controller](https://hub.docker.com/r/linuxserver/unifi-controller)
 
+
+## TL;DR
+
+```bash
+$ helm repo add qonstrukt https://qonstrukt.github.io/helm-charts/
+$ helm repo update
+```
