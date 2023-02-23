@@ -7,7 +7,7 @@ keywords:
   - unifi
   - controller 
   - ubiquiti
-home: https://github.com/Qonstrukt/helm-charts
+home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/unifi-controller
 appVersion: "7.3.83"
 maintainers:
   - name: Stefan Moonen
