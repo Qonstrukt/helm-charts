@@ -152,20 +152,28 @@ containerPort: 80
 
 ## Additional environment variables
 env:
-  APACHE_RUN_USER: www-data
-  APACHE_RUN_GROUP: www-data
+  - name: APACHE_RUN_USER
+    value: www-data
+  - name: APACHE_RUN_GROUP
+    value: www-data
   ## Set the document root
-  # APACHE_DOCUMENT_ROOT: public/
+  # - name: APACHE_DOCUMENT_ROOT
+  #   value: public/
   ## Set the application's environment
-  # APP_ENV: prod
+  # - name: APP_ENV
+  #   value: prod
   ## Enable the PostgreSQL extension
-  # PHP_EXTENSION_PGSQL: 1
+  # - name: PHP_EXTENSION_PGSQL
+  #   value: 1
   ## Disable the Mysqli extension (otherwise it is enabled by default)
-  # PHP_EXTENSION_MYSQLI: 0
+  # - name: PHP_EXTENSION_MYSQLI
+  #   value: 0
   ## set the parameter memory_limit=1g
-  # PHP_INI_MEMORY_LIMIT: 1g
+  # - name: PHP_INI_MEMORY_LIMIT
+  #   value: 1g
   ## set the parameter error_reporting=EALL
-  # PHP_INI_ERROR_REPORTING: E_ALL
+  # - name: PHP_INI_ERROR_REPORTING
+  #   value: E_ALL
 
 ## Additional arguments for the container entrypoint process
 args: []
