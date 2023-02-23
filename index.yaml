@@ -3,6 +3,48 @@ entries:
   php:
   - annotations:
       artifacthub.io/changes: |
+        - Configure working container configuration
+      artifacthub.io/images: |
+        - name: PHP 8.0
+          image: qonstrukt/php:8.0-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+        - name: PHP 8.1
+          image: qonstrukt/php:8.1-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+        - name: PHP 8.2
+          image: qonstrukt/php:8.2-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+    apiVersion: v2
+    appVersion: 8.1-v6-apache
+    created: "2023-02-23T18:21:51.957228095Z"
+    description: A Helm Chart for a generic PHP application
+    digest: fb8cb49396d2b89ba85321e8e8c0293d42df8b8f01c7526aa2a4614a3f8284a6
+    home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/php
+    keywords:
+    - php
+    - apache
+    - nginx
+    - cli
+    - node
+    - yarn
+    - composer
+    maintainers:
+    - email: stefan@qonstrukt.nl
+      name: Stefan Moonen
+      url: https://qonstrukt.nl
+    name: php
+    type: application
+    urls:
+    - https://github.com/Qonstrukt/helm-charts/releases/download/php-0.1.2/php-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - Fix passing ENV variables
       artifacthub.io/images: |
         - name: PHP 8.0
@@ -114,4 +156,4 @@ entries:
     urls:
     - https://github.com/Qonstrukt/helm-charts/releases/download/unifi-controller-2.0.3/unifi-controller-2.0.3.tgz
     version: 2.0.3
-generated: "2023-02-23T17:09:44.134299159Z"
+generated: "2023-02-23T18:21:51.957242995Z"
