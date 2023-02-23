@@ -1,0 +1,54 @@
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "unifi.fullname" . }}-data
+  namespace: {{ .Release.Namespace }}
+{{- with .Values.persistence.annotations  }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+  labels:
+    {{- include "unifi.labels" . | nindent 4 }}  
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size | quote }}
+{{- if .Values.persistence.storageClass }}
+{{- if (eq "-" .Values.persistence.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}
+
+---
+{{- if and .Values.persistence.backup.enabled (not .Values.persistence.backup.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "unifi.fullname" . }}-backup
+  namespace: {{ .Release.Namespace }}
+{{- with .Values.persistence.backup.annotations  }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+  labels:
+    {{- include "unifi.labels" . | nindent 4 }}  
+spec:
+  accessModes:
+    - {{ .Values.persistence.backup.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.backup.size | quote }}
+{{- if .Values.persistence.backup.storageClass }}
+{{- if (eq "-" .Values.persistence.backup.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.backup.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}

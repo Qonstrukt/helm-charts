@@ -1,0 +1,24 @@
+apiVersion: v2
+name: unifi-controller
+description: A Helm Chart for deploying a UniFi controller to Kubernetes
+type: application
+version: 2.0.3
+keywords:
+  - unifi
+  - controller 
+  - ubiquiti
+home: https://github.com/Qonstrukt/helm-charts
+appVersion: "7.3.83"
+maintainers:
+  - name: Stefan Moonen
+    email: stefan@qonstrukt.nl
+    url: https://qonstrukt.nl
+annotations:
+  artifacthub.io/changes: |
+    - Update to image v7.3.83
+  artifacthub.io/images: |
+    - name: unifi-controller
+      image: linuxserver/unifi-controller:7.3.83
+      platforms:
+        - linux/amd64
+        - linux/arm64

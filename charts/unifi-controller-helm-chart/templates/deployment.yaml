@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "unifi.fullname" . }}
+  namespace: {{ .Release.Namespace }}  
+  labels:
+    {{- include "unifi.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "unifi.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "unifi.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "unifi.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: TZ
+            value: {{ .Values.environment.timezone }}
+          - name: PUID
+            value: "{{ .Values.environment.uid }}"
+          - name: PGID
+            value: "{{ .Values.environment.gid }}"
+          - name: MEM_LIMIT
+            value: "{{ .Values.environment.memLimit }}"
+          - name: MEM_STARTUP
+            value: "{{ .Values.environment.memStartup }}"
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+            name: devicecom
+          - containerPort: 8443
+            protocol: TCP
+            name: webapi
+          - containerPort: 8880
+            protocol: TCP
+            name: httpredirects
+          - containerPort: 8843
+            protocol: TCP
+            name: httpsredirects
+          - containerPort: 6789
+            protocol: TCP
+            name: speedtest
+          - containerPort: 10001
+            protocol: UDP
+            name: apdiscovery
+          - containerPort: 3478
+            protocol: TCP
+            name: stun
+          {{- if .Values.service.appDiscovery }}
+          - containerPort: 1900
+            protocol: UDP
+            name: appdiscovery
+          {{- end }}
+          {{- if .Values.service.syslogCapture }}
+          - containerPort: 5514
+            protocol: UDP
+            name: syslogcapture    
+          {{- end }}
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20                     
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: "/config"
+              name: data
+            - mountPath: "/config/data/backup"              
+              name: backup-data
+      volumes:
+        {{- if .Values.persistence }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "unifi.fullname" . }}-data
+        {{- else }}
+        - name: data
+          emptyDir: {}
+        {{- end }}           
+        {{- if .Values.persistence.backup }}
+        - name: backup-data
+          persistentVolumeClaim:
+            claimName: {{ include "unifi.fullname" . }}-backup
+        {{- else }}        
+        - name: backup-data
+          emptyDir: {}
+        {{- end }}            
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
