@@ -1,0 +1,189 @@
+## Default values for deployment
+
+## Number of replicas
+replicaCount: 1
+
+## Netxcloud docker image
+image:
+  registry: "docker.io"
+  repository: "qonstrukt/php"
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+## Pull secrets and name override options
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+## Pod deployment strategy
+strategy: {}
+
+## Optional service account
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## Additional node selector
+nodeSelector: {}
+
+## Additional pod annotations
+podAnnotations: {}
+
+## Pod security options (default: www-data as fsGroup and user running as non-root)
+podSecurityContext:
+  fsGroup: 33
+  runAsUser: 33
+  runAsNonRoot: true
+
+## Default security options to run as read only container without privilege escalation
+securityContext:
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  privileged: false
+
+service:
+  type: ClusterIP
+  port: 80
+  ## The node port (only relevant for type LoadBalancer or NodePort)
+  nodePort:
+  ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
+  clusterIP:
+  ## The loadbalancer ip address (only relevant for type LoadBalancer)
+  loadBalancerIP:
+  # Annotations to add to the service
+  annotations: {}
+
+## Ingress configuration
+ingress:
+  ## Enable ingress endpoint
+  enabled: false
+
+  ## Maximal body size (default: 64m - increase if uploads are failing)
+  maxBodySize: 64m
+
+  ## Additional ingress annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+
+  ## Hosts
+  hosts:
+    - host:
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+  ## TLS settings for hosts
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+## Resource limits and requests
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## Custom startup probe (overwrites default startup probe)
+customStartupProbe: {}
+
+## Default startup probe
+startupProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 30
+  successThreshold: 1
+  periodSeconds: 10
+
+## Custom liveness probe (overwrites default liveness probe)
+customLivenessProbe: {}
+
+## Default liveness probe
+livenessProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 10
+
+## Custom readiness probe (overwrites default readiness probe)
+customReadinessProbe: {}
+
+## Default readiness probe
+readinessProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 10
+
+tolerations: []
+
+affinity: {}
+
+## Maximum number of revisions maintained in revision history
+revisionHistoryLimit:
+
+## Pod disruption budget
+podDisruptionBudget: {}
+  ## Minimum number of pods that must be available after eviction
+  # minAvailable:
+  ## Maximum number of pods that can be unavailable after eviction
+  # maxUnavailable:
+
+## Internal container port (default: 80)
+containerPort: 80
+
+## Additional environment variables
+env:
+  APACHE_RUN_USER: www-data
+  APACHE_RUN_GROUP: www-data
+  ## Set the document root
+  # APACHE_DOCUMENT_ROOT: public/
+  ## Set the application's environment
+  # APP_ENV: prod
+  ## Enable the PostgreSQL extension
+  # PHP_EXTENSION_PGSQL: 1
+  ## Disable the Mysqli extension (otherwise it is enabled by default)
+  # PHP_EXTENSION_MYSQLI: 0
+  ## set the parameter memory_limit=1g
+  # PHP_INI_MEMORY_LIMIT: 1g
+  ## set the parameter error_reporting=EALL
+  # PHP_INI_ERROR_REPORTING: E_ALL
+
+## Additional arguments for the container entrypoint process
+args: []
+
+## Storage parameters
+storage:
+  ## Set persistentVolumenClaimName to reference an existing PVC
+  persistentVolumeClaimName:
+
+  ## Alternative set requestedSize to define a size for a dynmaically created PVC
+  requestedSize:
+
+  ## the storage class name
+  className:
+
+  ## Default access mode (ReadWriteOnce)
+  accessModes:
+    - ReadWriteOnce
+
+  ## Keep a created Persistent volume claim when uninstalling the helm chart
+  keepPvc: false
