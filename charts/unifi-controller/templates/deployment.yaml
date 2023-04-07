@@ -101,7 +101,7 @@ spec:
         - name: data
           emptyDir: {}
         {{- end }}           
-        {{- if .Values.persistence.backup }}
+        {{- if .Values.persistence.backup.enabled }}
         - name: backup-data
           persistentVolumeClaim:
             claimName: {{ include "unifi.fullname" . }}-backup
