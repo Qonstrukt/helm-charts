@@ -150,8 +150,12 @@ env:
     value: www-data
   - name: APACHE_RUN_GROUP
     value: www-data
-  - name: TZ
-    value: Europe/Amsterdam
+  ## Set PHP timezone
+  # - name: PHP_INI_DATE__TIMEZONE
+  #   value: Europe/Amsterdam
+  ## Set Cronjob timezone
+  # - name: TZ
+  #   value: Europe/Amsterdam
   ## Set the document root
   # - name: APACHE_DOCUMENT_ROOT
   #   value: public/
