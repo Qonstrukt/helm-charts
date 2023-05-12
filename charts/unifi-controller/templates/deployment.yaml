@@ -93,7 +93,7 @@ spec:
             - mountPath: "/config/data/backup"              
               name: backup-data
       volumes:
-        {{- if .Values.persistence }}
+        {{- if .Values.persistence.enabled }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "unifi.fullname" . }}-data
