@@ -3,6 +3,49 @@ entries:
   php:
   - annotations:
       artifacthub.io/changes: |
+        - Added icon to the chart
+      artifacthub.io/images: |
+        - name: PHP 8.0
+          image: qonstrukt/php:8.0-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+        - name: PHP 8.1
+          image: qonstrukt/php:8.1-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+        - name: PHP 8.2
+          image: qonstrukt/php:8.2-v6-apache
+          platforms:
+            - linux/amd64
+            - linux/arm64
+    apiVersion: v2
+    appVersion: 8.1-v6-apache
+    created: "2023-05-31T16:59:50.966658369Z"
+    description: A Helm Chart for a generic PHP application
+    digest: 930dc07c73567aed4f8d8b822c9a0c3469907ff6396cc30183b7bbaf04665c1d
+    home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/php
+    icon: https://www.php.net/favicon-196x196.png
+    keywords:
+    - php
+    - apache
+    - nginx
+    - cli
+    - node
+    - yarn
+    - composer
+    maintainers:
+    - email: stefan@qonstrukt.nl
+      name: Stefan Moonen
+      url: https://qonstrukt.nl
+    name: php
+    type: application
+    urls:
+    - https://github.com/Qonstrukt/helm-charts/releases/download/php-0.1.4/php-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      artifacthub.io/changes: |
         - Update PHP configuration
       artifacthub.io/images: |
         - name: PHP 8.0
@@ -226,4 +269,4 @@ entries:
     urls:
     - https://github.com/Qonstrukt/helm-charts/releases/download/unifi-controller-2.0.3/unifi-controller-2.0.3.tgz
     version: 2.0.3
-generated: "2023-05-12T10:10:52.160146331Z"
+generated: "2023-05-31T16:59:50.966673769Z"
