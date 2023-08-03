@@ -16,7 +16,7 @@ maintainers:
     url: https://qonstrukt.nl
 annotations:
   artifacthub.io/changes: |
-    - Upgrade Controller to v7.4.162
+    - Add support for a service type
   artifacthub.io/images: |
     - name: unifi-controller
       image: linuxserver/unifi-controller:7.4.162
