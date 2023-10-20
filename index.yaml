@@ -215,6 +215,35 @@ entries:
   unifi-controller:
   - annotations:
       artifacthub.io/changes: |
+        - Upgrade UniFi Controller to v7.5.187
+      artifacthub.io/images: |
+        - name: unifi-controller
+          image: linuxserver/unifi-controller:7.5.187
+          platforms:
+            - linux/amd64
+            - linux/arm64
+    apiVersion: v2
+    appVersion: 7.5.187
+    created: "2023-10-20T10:40:40.257168898Z"
+    description: A Helm Chart for deploying a UniFi controller to Kubernetes
+    digest: add1c476aed6422a9194a0706e01362601519a9539d9a3956d2a636337b1797a
+    home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/unifi-controller
+    icon: https://assets-global.website-files.com/622b70d8906c7ab0c03f77f8/63b40a92093c6b2f3767e4e6_tMCv8T-y_400x400.png
+    keywords:
+    - unifi
+    - controller
+    - ubiquiti
+    maintainers:
+    - email: stefan@qonstrukt.nl
+      name: Stefan Moonen
+      url: https://qonstrukt.nl
+    name: unifi-controller
+    type: application
+    urls:
+    - https://github.com/Qonstrukt/helm-charts/releases/download/unifi-controller-2.4.0/unifi-controller-2.4.0.tgz
+    version: 2.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgrade UniFi Controller to v7.5.176
       artifacthub.io/images: |
         - name: unifi-controller
@@ -443,4 +472,4 @@ entries:
     urls:
     - https://github.com/Qonstrukt/helm-charts/releases/download/unifi-controller-2.0.3/unifi-controller-2.0.3.tgz
     version: 2.0.3
-generated: "2023-10-14T14:24:11.432037078Z"
+generated: "2023-10-20T10:40:40.257216799Z"
