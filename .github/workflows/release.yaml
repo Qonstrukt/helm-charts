@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+    paths: 
+      - ./charts
 
 jobs:
-  release:
+  release-charts:
     name: Release Charts
     runs-on: ubuntu-latest
 
@@ -15,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -25,6 +27,6 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run Chart Releaser
-        uses: helm/chart-releaser-action@v1.5.0
+        uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
