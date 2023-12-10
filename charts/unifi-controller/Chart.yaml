@@ -3,7 +3,7 @@ name: unifi-controller
 description: A Helm Chart for deploying a UniFi controller to Kubernetes
 icon: https://assets-global.website-files.com/622b70d8906c7ab0c03f77f8/63b40a92093c6b2f3767e4e6_tMCv8T-y_400x400.png
 type: application
-version: 2.5.0
+version: 2.5.1
 keywords:
   - unifi
   - controller 
