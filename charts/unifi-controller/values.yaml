@@ -30,6 +30,7 @@ service:
     webapi: 8443
   appDiscovery: false
   syslogCapture: false
+  loadBalancerIP: ""
 
 ingress:
   enabled: true
