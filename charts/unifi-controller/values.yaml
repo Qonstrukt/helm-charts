@@ -9,6 +9,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+priorityClassName: ""
+
 serviceAccount:
   create: true
   annotations: {}
